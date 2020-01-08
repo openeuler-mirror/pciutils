@@ -1,17 +1,13 @@
 Name:           pciutils
 Version:        3.6.2
-Release:        3
+Release:        4
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
-Source0:        ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci/%{name}-%{version}.tar.gz
-
-Patch0:         0000-pciutils-2.2.1-idpath.patch
-Patch1:         0001-pciutils-dir-d.patch
+Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{name}-%{version}.tar.gz
 
 ExclusiveOS:    Linux
 BuildRequires:  gcc git sed kmod-devel pkgconfig zlib-devel
-Requires:       hwdata
 Provides:       %{name}-libs
 Obsoletes:      %{name}-libs
 Provides:       %{name}-libs-debuginfo
@@ -73,7 +69,7 @@ install -p lib/libpci.pc $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
 install -p lib/libpci.so.* $RPM_BUILD_ROOT/%{_lib}/
 ln -s ../../%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/*.so.*.*.*) $RPM_BUILD_ROOT%{_libdir}/libpci.so
-rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
+rm -rf $RPM_BUILD_ROOT/usr/share/pci.ids*
 
 %post -n %{name} -p /sbin/ldconfig
 
@@ -102,11 +98,17 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Jan 7 2020 openEuler Buildteam <buildteam@openeuler.org> - 3.6.2-4
+- Type:enhancemnet
+- ID:NA
+- SUG:NA
+- DESC:update package
+
 * Thu Aug 29 2019 zoujing <zoujing13@huawei.com> - 3.6.2-3
 - Type:enhancemnet
 - ID:NA
 - SUG:restart
-- DESCi:openEuler Debranding
+- DESC:openEuler Debranding
 
 * Mon Apr 15 2019 Buildteam <buildteam@openeuler.org> - 3.6.2-2
 - Package Initialization
