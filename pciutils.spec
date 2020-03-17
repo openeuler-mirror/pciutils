@@ -6,7 +6,9 @@ License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{name}-%{version}.tar.gz
 
+# patch0 is from fedora, change pci.ids directory from /usr/share to /usr/share/hwdata
 Patch0:         0000-pciutils-2.2.1-idpath.patch
+# patch1 is from fedora, rhbz#195327
 Patch1:         0001-pciutils-dir-d.patch
 
 ExclusiveOS:    Linux
