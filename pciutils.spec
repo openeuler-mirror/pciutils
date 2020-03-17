@@ -1,13 +1,19 @@
 Name:           pciutils
 Version:        3.6.2
-Release:        4
+Release:        5
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{name}-%{version}.tar.gz
 
+# patch0 is from fedora, change pci.ids directory from /usr/share to /usr/share/hwdata
+Patch0:         0000-pciutils-2.2.1-idpath.patch
+# patch1 is from fedora, rhbz#195327
+Patch1:         0001-pciutils-dir-d.patch
+
 ExclusiveOS:    Linux
 BuildRequires:  gcc git sed kmod-devel pkgconfig zlib-devel
+Requires:       hwdata
 Provides:       %{name}-libs
 Obsoletes:      %{name}-libs
 Provides:       %{name}-libs-debuginfo
@@ -69,7 +75,7 @@ install -p lib/libpci.pc $RPM_BUILD_ROOT%{_libdir}/pkgconfig
 install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
 install -p lib/libpci.so.* $RPM_BUILD_ROOT/%{_lib}/
 ln -s ../../%{_lib}/$(basename $RPM_BUILD_ROOT/%{_lib}/*.so.*.*.*) $RPM_BUILD_ROOT%{_libdir}/libpci.so
-rm -rf $RPM_BUILD_ROOT/usr/share/pci.ids*
+rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 
 %post -n %{name} -p /sbin/ldconfig
 
@@ -98,6 +104,12 @@ rm -rf $RPM_BUILD_ROOT/usr/share/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Mar 17 2020 hy-euler <eulerstoragemt@huawei.com> - 3.6.2-5
+- Type:enhancemnet
+- ID:NA
+- SUG:NA
+- DESC:add fedora patches for displaying more information while running lspci
+
 * Tue Jan 7 2020 openEuler Buildteam <buildteam@openeuler.org> - 3.6.2-4
 - Type:enhancemnet
 - ID:NA
