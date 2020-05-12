@@ -1,15 +1,11 @@
 Name:           pciutils
-Version:        3.6.2
-Release:        5
+Version:        3.6.4
+Release:        1
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{name}-%{version}.tar.gz
 
-# patch0 is from fedora, change pci.ids directory from /usr/share to /usr/share/hwdata
-Patch0:         0000-pciutils-2.2.1-idpath.patch
-# patch1 is from fedora, rhbz#195327
-Patch1:         0001-pciutils-dir-d.patch
 
 ExclusiveOS:    Linux
 BuildRequires:  gcc git sed kmod-devel pkgconfig zlib-devel
@@ -18,6 +14,12 @@ Provides:       %{name}-libs
 Obsoletes:      %{name}-libs
 Provides:       %{name}-libs-debuginfo
 Obsoletes:      %{name}-libs-debuginfo
+
+#change pci.ids directory to hwdata, fedora/rhel specific
+Patch6000:      6000-pciutils-2.2.1-idpath.patch
+
+#add support for directory with another pci.ids, rejected by upstream, rhbz#195327
+Patch6001:      6001-pciutils-dir-d.patch
 
 %description
 The PCI Utilities are a collection of programs for inspecting and manipulating configuration
@@ -97,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 %{_libdir}/libpci.a
 
 %files help
+%{_mandir}/man5/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
 
@@ -104,6 +107,12 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Apr 14 2020 linfeilong<linfeilong@huawei.com> - 3.6.4-1
+- Type:enhancemnet
+- ID:NA
+- SUG:NA
+- DESC:update to 3.6.4
+
 * Tue Mar 17 2020 hy-euler <eulerstoragemt@huawei.com> - 3.6.2-5
 - Type:enhancemnet
 - ID:NA
