@@ -1,6 +1,6 @@
 Name:           pciutils
-Version:        3.6.2
-Release:        5
+Version:        3.7.0
+Release:        1
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
@@ -97,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 %{_libdir}/libpci.a
 
 %files help
+%{_mandir}/man5/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
 
@@ -104,6 +105,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jul 16 2020 Zhiqiang Liu <liuzhiqiang26@huawei.com> - 3.7.0-1
+- update to v3.7.0 version
+
 * Tue Mar 17 2020 hy-euler <eulerstoragemt@huawei.com> - 3.6.2-5
 - Type:enhancemnet
 - ID:NA
