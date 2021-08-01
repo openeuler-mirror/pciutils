@@ -1,6 +1,6 @@
 Name:           pciutils
 Version:        3.7.0
-Release:        1
+Release:        2
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
@@ -12,7 +12,7 @@ Patch0:         0000-pciutils-2.2.1-idpath.patch
 Patch1:         0001-pciutils-dir-d.patch
 
 ExclusiveOS:    Linux
-BuildRequires:  gcc git sed kmod-devel pkgconfig zlib-devel
+BuildRequires:  gcc sed kmod-devel pkgconfig zlib-devel
 Requires:       hwdata
 Provides:       %{name}-libs
 Obsoletes:      %{name}-libs
@@ -49,7 +49,7 @@ Requires: man
 This contains man files for the using of pciutils.
 
 %prep
-%autosetup -Sgit -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
 make SHARED="no" ZLIB="no" LIBKMOD=yes STRIP="" OPT="$RPM_OPT_FLAGS" LDFLAGS="$RPM_LD_FLAGS" PREFIX="/usr" %{?_smp_mflags}
@@ -105,6 +105,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jul 30 2021 chenyanpanHW <chenyanpan@huawei.com> - 3.7.0-2
+- DESC: delete -Sgit from %autosetup, and delete BuildRequires git
+
 * Thu Jul 16 2020 Zhiqiang Liu <liuzhiqiang26@huawei.com> - 3.7.0-1
 - update to v3.7.0 version
 
