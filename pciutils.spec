@@ -1,6 +1,6 @@
 Name:           pciutils
 Version:        3.6.4
-Release:        1
+Release:        4
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
@@ -9,6 +9,11 @@ Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{na
 
 ExclusiveOS:    Linux
 BuildRequires:  gcc git sed kmod-devel pkgconfig zlib-devel
+
+%ifarch i686
+BuildRequires: which kmod-libs
+%endif
+
 Requires:       hwdata
 Provides:       %{name}-libs
 Obsoletes:      %{name}-libs
@@ -107,6 +112,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Oct 21 2021 yanglongkang <yanglongkang@huawei.com> - 3.6.4-4
+- solve i686 dependency problem and set release num to 4 for CI
+
 * Tue Apr 14 2020 linfeilong<linfeilong@huawei.com> - 3.6.4-1
 - Type:enhancemnet
 - ID:NA
