@@ -1,6 +1,6 @@
 Name:           pciutils
 Version:        3.7.0
-Release:        2
+Release:        3
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
@@ -10,6 +10,10 @@ Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{na
 Patch0:         0000-pciutils-2.2.1-idpath.patch
 # patch1 is from fedora, rhbz#195327
 Patch1:         0001-pciutils-dir-d.patch
+Patch2:         0002-lspci-Adjust-PCI_EXP_DEV2_-to-PCI_EXP_DEVCTL2_-macro.patch
+Patch3:         0003-lspci-Decode-10-Bit-Tag-Requester-Enable.patch
+Patch4:         0004-lspci-Decode-VF-10-Bit-Tag-Requester.patch
+Patch5:         0005-lspci-Update-tests-files-with-VF-10-Bit-Tag-Requeste.patch
 
 ExclusiveOS:    Linux
 BuildRequires:  gcc sed kmod-devel pkgconfig zlib-devel
@@ -105,6 +109,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Sep 6 2022 Wangming Shao <shaowangming@h-partners.com> - 3.7.0-3
+- DESC:add support lspci querying 10-bit tag information
+
 * Fri Jul 30 2021 chenyanpanHW <chenyanpan@huawei.com> - 3.7.0-2
 - DESC: delete -Sgit from %autosetup, and delete BuildRequires git
 
