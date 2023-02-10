@@ -1,5 +1,5 @@
 Name:           pciutils
-Version:        3.8.0
+Version:        3.9.0
 Release:        1
 Summary:        PCI bus related utilities
 License:        GPLv2+
@@ -105,6 +105,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Feb 09 2023 suweifeng <suweifeng1@huawei.com> 3.9.0-1
+- upgrade to 3.9.0
+
 * Fri Oct 28 2022 liusirui <liusirui@huawei.com> - 3.8.0-1
 - update to v3.8.0
 
