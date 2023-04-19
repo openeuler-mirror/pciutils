@@ -1,6 +1,6 @@
 Name:           pciutils
 Version:        3.9.0
-Release:        1
+Release:        2
 Summary:        PCI bus related utilities
 License:        GPLv2+
 URL:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
@@ -10,6 +10,7 @@ Source0:        https://mirrors.edge.kernel.org/pub/software/utils/pciutils/%{na
 Patch0:         0000-pciutils-2.2.1-idpath.patch
 # patch1 is from fedora, rhbz#195327
 Patch1:         0001-pciutils-dir-d.patch
+Patch2:         0002-Support-specify-CC.patch
 
 ExclusiveOS:    Linux
 BuildRequires:  gcc sed kmod-devel pkgconfig zlib-devel
@@ -105,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT/usr/share/hwdata/pci.ids*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Apr 19 2023 jammyjellyfish <jammyjellyfish255@outlook.com> - 3.9.0-2
+- Support specify CC
+
 * Thu Feb 09 2023 suweifeng <suweifeng1@huawei.com> 3.9.0-1
 - upgrade to 3.9.0
 
