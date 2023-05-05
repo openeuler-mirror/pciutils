@@ -1,0 +1,28 @@
+From 407ebd58308dcb057b547cae165038d927ef3220 Mon Sep 17 00:00:00 2001
+From: jammyjellyfish <jammyjellyfish255@outlook.com>
+Date: Wed, 19 Apr 2023 15:21:48 +0800
+Subject: [PATCH] Support specify CC
+
+Makefile set CC compiler as gcc, and not reading CC from
+environment variable. This patch lets Makefile read $CC
+environment variable and use it as compiler, if exists
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index cf099ea..50945a9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -49,7 +49,7 @@ STRIP=-s
+ ifdef CROSS_COMPILE
+ CC=$(CROSS_COMPILE)gcc
+ else
+-CC=cc
++CC?=cc
+ endif
+ AR=$(CROSS_COMPILE)ar
+ RANLIB=$(CROSS_COMPILE)ranlib
+-- 
+2.40.0
+
